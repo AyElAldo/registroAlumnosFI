@@ -1,5 +1,7 @@
 // package main;
 
+import java.util.Random;
+
 public class Alumno {
     /* Atributos */
     private String nombre;
@@ -7,6 +9,7 @@ public class Alumno {
     private String apellidoM;
     private Integer edad;
     private String direccion;
+    private Integer semestre;
     private Integer numeroInscripcion;
 
     /* Constructores */
@@ -52,6 +55,8 @@ public class Alumno {
 
     public void setEdad(int edad) {
         this.edad = edad;
+        this.semestre = calcularSemestre();
+        // System.out.println("Edad: "+ this.edad+ " Semestre: " + this.semestre);
     }
 
     public String getDireccion() {
@@ -64,6 +69,29 @@ public class Alumno {
 
     public Integer getNumeroInscripcion(){
         return this.numeroInscripcion;
+    }
+
+    public Integer getSemestre(){
+        return this.semestre;
+    }
+
+    // Metodo para calcular el semestre a partir de la edad
+    public Integer calcularSemestre(){
+        Random random = new Random();
+        Integer semestre = 1;
+        if(this.edad == 18){
+            semestre = random.nextInt(2)+1;
+        }else if(this.edad == 19){
+            semestre = random.nextInt(4)+2;
+        }else if(this.edad == 20){
+            semestre = random.nextInt(6)+3;
+        }else if(this.edad == 21){
+            semestre = random.nextInt(8)+4;
+        }else{
+            semestre = random.nextInt(10)+5;
+        }
+
+        return semestre;
     }
 
 }
