@@ -2,7 +2,6 @@
 import java.io.RandomAccessFile; // 
 import java.util.Random; // Numeros aleatorios
 
-
 import java.io.IOException; // Excepciones
 public class GenNombres {
     

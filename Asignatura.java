@@ -1,15 +1,16 @@
 public class Asignatura{
     
     private String nombre; // Nombre de la asignatura
-    private float creditos; // Creditos de la asignatura
+    private Integer creditos; // Creditos de la asignatura
     private Integer semestre; // Semestre al que pertenece la materia
 
     /* Constructor */
-    public Asignatura(String nombre, float creditos, Integer semestre){
+    public Asignatura(String nombre, Integer creditos, Integer semestre){
         this.nombre = nombre;
         this.creditos = creditos;
         this.semestre = semestre;
     }
+    public Asignatura(){};
     /* Getters and Setters */
     public String getNombre() {
         return this.nombre;
@@ -19,11 +20,11 @@ public class Asignatura{
         this.nombre = nombre;
     }
     
-    public float getCreditos() {
+    public Integer getCreditos() {
         return this.creditos;
     }
     
-    public void setCreditos(float creditos) {
+    public void setCreditos(Integer creditos) {
         this.creditos = creditos;
     }
     

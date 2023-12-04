@@ -6,7 +6,7 @@
 public class Prueba {
 
     public static void main(String[] args){
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 10; i++) {
             System.out.print(i+1);
             Alumno alumno = GenNombres.generarAlumno();
             System.out.print(' '+alumno.getNombre()+' ');
@@ -14,6 +14,8 @@ public class Prueba {
             System.out.print(alumno.getApellidoM()+' ');
             System.out.print(alumno.getSemestre().toString()+' ');
             System.out.println(alumno.getEdad());
+            System.out.println(alumno.getHistorial());
+            System.out.println();
         }
 
     } 

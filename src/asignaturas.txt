@@ -17,7 +17,7 @@ Estructura de datos y algoritmos II,10,3
 Programacion orientada a objetos,10,3
 Fundamentos de estadistica,8,4
 Electricidad y magnetismo,10,4
-Analisis numérico,8,4
+Analisis numerico,8,4
 Matematicas avanzadas,8,4
 Estructuras discretas,8,4
 Estructura y programacion de computadoras,8,5

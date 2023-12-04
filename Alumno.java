@@ -11,9 +11,17 @@ public class Alumno {
     private String direccion;
     private Integer semestre;
     private Integer numeroInscripcion;
+    private RegistroAcadem historial;
 
-    /* Constructores */
-    // Constructor con parametros
+    
+    /**
+     * Constructor con parametros
+     * @param nombre Nombre del Alumno
+     * @param apelldioP Apellido Paterno del alumno
+     * @param apellidoM Apellido Materno del alumno
+     * @param edad Edad del alumno
+     * @param direccion Direccion del alumno
+     */
     public Alumno(String nombre, String apellidoP, String apellidoM, Integer edad, String direccion){
         this.nombre = nombre;
         this.apellidoP = apellidoP;
@@ -21,7 +29,7 @@ public class Alumno {
         this.edad = edad;
         this.direccion = direccion;
     }
-    // Constructor vacio
+    /** Constructor vacio */ 
     public Alumno(){};
 
     /* Getters and Setters */
@@ -53,6 +61,9 @@ public class Alumno {
         return this.edad;
     }
 
+    /**
+     * Determina la edad y le asocia un semestre que concuerde con su edad
+     */
     public void setEdad(int edad) {
         this.edad = edad;
         this.semestre = calcularSemestre();
@@ -75,23 +86,32 @@ public class Alumno {
         return this.semestre;
     }
 
-    // Metodo para calcular el semestre a partir de la edad
+    public RegistroAcadem getHistorial(){
+        return this.historial;
+    }
+
+    /**
+     * Metodo para calcular el semestre a partir de la edad.
+     * Ademas se crea el registro de cada alumno a partir del semestre
+     * @return Retorna el semestre aleatorio
+     */
     public Integer calcularSemestre(){
         Random random = new Random();
         Integer semestre = 1;
         if(this.edad == 18){
-            semestre = random.nextInt(2)+1;
+            semestre = random.nextInt(2)+1; // Genera numero [1,2]
         }else if(this.edad == 19){
-            semestre = random.nextInt(4)+2;
+            semestre = random.nextInt(4)+1; // Genera numero [1,4]
         }else if(this.edad == 20){
-            semestre = random.nextInt(6)+3;
+            semestre = random.nextInt(4)+3; // Genera numero [3,6]
         }else if(this.edad == 21){
-            semestre = random.nextInt(8)+4;
+            semestre = random.nextInt(4)+5; // Genera numero [5,8]
         }else{
-            semestre = random.nextInt(10)+5;
+            semestre = random.nextInt(4)+7; // Genera numero [6,10]
         }
+
+        this.historial = new RegistroAcadem(semestre);
 
         return semestre;
     }
-
 }
