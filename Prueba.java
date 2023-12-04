@@ -12,6 +12,7 @@ public class Prueba {
             System.out.print(' '+alumno.getNombre()+' ');
             System.out.print(alumno.getApellidoP()+' ');
             System.out.print(alumno.getApellidoM()+' ');
+            System.out.print(alumno.getSemestre().toString()+' ');
             System.out.println(alumno.getEdad());
         }
 
