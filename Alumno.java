@@ -10,7 +10,8 @@ public class Alumno {
     private Integer edad;
     private String direccion;
     private Integer semestre;
-    private Integer numeroInscripcion;
+    private String numeroCuenta;
+    private String numeroInscripcion;
     private RegistroAcadem historial;
 
     
@@ -28,6 +29,7 @@ public class Alumno {
         this.apellidoM = apellidoM;
         this.edad = edad;
         this.direccion = direccion;
+        // this.numeroCuenta = generarNumeroDeCuenta();
     }
     /** Constructor vacio */ 
     public Alumno(){};
@@ -78,12 +80,20 @@ public class Alumno {
         this.direccion = direccion;
     }
 
-    public Integer getNumeroInscripcion(){
+    public String getNumeroInscripcion(){
         return this.numeroInscripcion;
     }
 
     public Integer getSemestre(){
         return this.semestre;
+    }
+
+    public String getNumeroCuenta() {
+        return this.numeroCuenta;
+    }
+
+    public void setNumeroCuenta(){
+        this.numeroCuenta = generarNumeroDeCuenta();
     }
 
     public RegistroAcadem getHistorial(){
@@ -92,7 +102,9 @@ public class Alumno {
 
     /**
      * Metodo para calcular el semestre a partir de la edad.
-     * Ademas se crea el registro de cada alumno a partir del semestre
+     * Ademas se crea el registro de cada alumno a partir del semestre.
+     * Genera numero de cuenta
+     * Genera NoInscripcion
      * @return Retorna el semestre aleatorio
      */
     public Integer calcularSemestre(){
@@ -111,7 +123,35 @@ public class Alumno {
         }
 
         this.historial = new RegistroAcadem(semestre);
+        this.numeroCuenta = generarNumeroDeCuenta();
+
+        GenNumInscripcion generadorInscripcion = new GenNumInscripcion();
+        this.numeroInscripcion = generadorInscripcion.generarNumeroInscripcion(this.historial.promedio);
 
         return semestre;
+    }
+
+    /**
+     * Funcion para generar un número de cuenta aleatorio
+     * @return
+     */ 
+    private static String generarNumeroDeCuenta() {
+        Random random = new Random();
+        Integer numero = random.nextInt(1000000);
+        String cadena = String.format("314%06d", numero);
+        return cadena;
+    }
+
+    @Override
+    public String toString() {
+        String cadena = "******************************\n";
+        cadena += this.nombre + " " + this.apellidoP + " " +  this.apellidoM;
+        cadena += "\n******************************\n";
+        cadena += "No. Cuenta: " + this.numeroCuenta + "\tEdad: " + this.edad;
+        cadena += "\n------------------------------\n";
+        cadena += "No. Semestre: " + this.semestre + "\tNo. Inscripcion: " + this.numeroInscripcion;
+        cadena += this.historial;
+
+        return cadena;
     }
 }

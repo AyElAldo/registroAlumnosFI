@@ -10,6 +10,7 @@ public class RegistroAcadem {
     Integer numAsignaturasCursadas;
     List<Asignatura> asignaturasCursadas = new ArrayList<Asignatura>();
     List<Integer> listaCalificaciones = new ArrayList<Integer>();
+    Double promedio;
 
     /**
      *  Constructor
@@ -18,9 +19,11 @@ public class RegistroAcadem {
     RegistroAcadem(Integer semestre){
         this.creditosTotales = 0;
         this.numAsignaturasCursadas = 0;
+
         String rutaAsignaturas = "src/asignaturas.txt";
         String linea = "";
         String[] datosAsignaturas;
+        Double sumaCalificaciones = 0.0;
 
         try(RandomAccessFile archivo = new RandomAccessFile(rutaAsignaturas, "rw")){
             for(int i = 1; i < 51; i++){
@@ -29,9 +32,7 @@ public class RegistroAcadem {
                 datosAsignaturas = linea.split(","); // Separa cada linea (asignatura. creditos, semestre)
 
                 Integer creditosAsignatura = Integer.parseInt(datosAsignaturas[1]); // Convierte a entero las subcadenas
-                // System.out.println("Creditos: " + creditosAsignatura);
                 Integer semestreAsignatura = Integer.parseInt(datosAsignaturas[2]); // Convierte a entero las subcadenas
-
                 Integer topeSemestre = semestre+1; 
                 
                 // El ciclo recorre el txt hasta el semestre indicado
@@ -48,11 +49,15 @@ public class RegistroAcadem {
                     this.asignaturasCursadas.add(asignatura); // Se agrega a las ya cursadas
 
                     Random random = new Random();
-                    this.listaCalificaciones.add(random.nextInt(5)+6);
+                    Integer calificacion = random.nextInt(5)+6;
+                    this.listaCalificaciones.add(calificacion);
+                    sumaCalificaciones += calificacion;
                 }else {
                     break;
                 }
             }
+
+            this.promedio = sumaCalificaciones/numAsignaturasCursadas;
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -64,14 +69,16 @@ public class RegistroAcadem {
      */
     @Override
     public String toString(){
-        String cadena = "";
+        String cadena = "\n-------------------\n";
         for(int i = 0; i < this.numAsignaturasCursadas; i++){
             cadena += this.asignaturasCursadas.get(i).getNombre() + ": " + this.listaCalificaciones.get(i).toString() + "\n";
         }
+        cadena += "-------------------\n";
+        cadena += "Promedio: " + String.format("%.3f", this.promedio);
         // for(Asignatura asignatura : this.asignaturasCursadas){
         //     cadena += asignatura.getNombre() + ": " + listaCalificaciones.get(0)
         // }
-        cadena += "\n";
+        cadena += "\n-------------------\n";
         return cadena;
     }
 
