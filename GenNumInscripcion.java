@@ -1,5 +1,5 @@
 public class GenNumInscripcion {
-    public static String generarNumeroInscripcion(Double promedio){
+    public String generarIndicador(Double promedio){
 
         Double escolaridad;
         Double velocidad;
@@ -7,10 +7,13 @@ public class GenNumInscripcion {
         String indicadorEscolar = "";
 
         escolaridad = Double.valueOf(100);
+        // System.out.println("Escolareidad: "+escolaridad);
         velocidad = Double.valueOf(100);
-        indicador = promedio*escolaridad*velocidad;
+        // System.out.println("Velocidad: "+velocidad);
+        indicador = Double.valueOf(promedio*escolaridad*velocidad);
 
-        indicadorEscolar = indicadorEscolar.toString();
+        indicadorEscolar = indicador.toString();
+        // System.out.println("Indicador escolar: "+indicador);
         return indicadorEscolar;
     }
 

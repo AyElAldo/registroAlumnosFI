@@ -15,8 +15,8 @@ public class GenNombres {
 
 
     // Genera un alumno con su nombre y apellidos
-    public static Alumno generarAlumno(){
-        Alumno alumno = new Alumno();
+    public static Alumno generarAlumno(Integer id){
+        Alumno alumno = new Alumno(id);
         alumno.setNumeroCuenta(); // Genera un numero de cuenta
 
         String rutaArchivo; // Ruta de los archivos de texto

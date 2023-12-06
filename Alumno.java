@@ -1,5 +1,6 @@
 // package main;
 
+import java.io.RandomAccessFile;
 import java.util.Random;
 
 public class Alumno {
@@ -23,16 +24,16 @@ public class Alumno {
      * @param edad Edad del alumno
      * @param direccion Direccion del alumno
      */
-    public Alumno(String nombre, String apellidoP, String apellidoM, Integer edad, String direccion){
+    public Alumno(Integer id,String nombre, String apellidoP, String apellidoM, Integer edad, String direccion){
         this.nombre = nombre;
         this.apellidoP = apellidoP;
         this.apellidoM = apellidoM;
         this.edad = edad;
-        this.direccion = direccion;
+        this.setDireccion(id);
         // this.numeroCuenta = generarNumeroDeCuenta();
     }
     /** Constructor vacio */ 
-    public Alumno(){};
+    public Alumno(Integer id){};
 
     /* Getters and Setters */
     public String getNombre() {
@@ -76,8 +77,19 @@ public class Alumno {
         return this.direccion;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setDireccion(Integer id) {
+        String nombreArchivo = "src/direcciones.txt"; // Ruta
+
+        try(RandomAccessFile archivo = new RandomAccessFile(nombreArchivo, "rw")){
+            // archivo.seek(0);
+            for(int i = 1; i < id; i++){
+                System.out.println(archivo.readLine());
+            }
+            this.direccion = archivo.readLine();
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     public String getNumeroInscripcion(){
@@ -122,12 +134,14 @@ public class Alumno {
             semestre = random.nextInt(4)+7; // Genera numero [6,10]
         }
 
+        // Asinga el historial academico al alumno
         this.historial = new RegistroAcadem(semestre);
+        // Asigna el numero de cuenta generado
         this.numeroCuenta = generarNumeroDeCuenta();
 
-        GenNumInscripcion generadorInscripcion = new GenNumInscripcion();
-        this.numeroInscripcion = generadorInscripcion.generarNumeroInscripcion(this.historial.promedio);
-
+        GenNumInscripcion generadorIndicador = new GenNumInscripcion();
+        this.numeroInscripcion = generadorIndicador.generarIndicador(this.historial.promedio);
+        // System.out.println("Numero de inscripcion es: "+this.numeroInscripcion);
         return semestre;
     }
 
@@ -144,12 +158,15 @@ public class Alumno {
 
     @Override
     public String toString() {
-        String cadena = "******************************\n";
+        String cadena = "------------------------------\n";
         cadena += this.nombre + " " + this.apellidoP + " " +  this.apellidoM;
-        cadena += "\n******************************\n";
+        cadena += "\n------------------------------\n";
         cadena += "No. Cuenta: " + this.numeroCuenta + "\tEdad: " + this.edad;
         cadena += "\n------------------------------\n";
         cadena += "No. Semestre: " + this.semestre + "\tNo. Inscripcion: " + this.numeroInscripcion;
+        cadena += "\n------------------------------\n";
+        cadena += "Direccion: " + this.direccion;
+        cadena += "\n------------------------------\n";
         cadena += this.historial;
 
         return cadena;
