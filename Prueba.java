@@ -3,6 +3,7 @@
 // import java.util.Random;
 // import java.io.FileReader;
 
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -108,6 +109,11 @@ public class Prueba {
                     }
                     pausaPantalla();
                     break;
+
+                case 6:
+                    limpiaPantalla();
+                    System.out.println("Exportando a CSV...");
+                    escribirCSV(alumnos);
             }
         }while(opcionMenu != 0);
 
@@ -129,6 +135,37 @@ public class Prueba {
             for (int i = 0; i < 50; i++) {
                 System.out.println();
             }
+    }
+
+    public static void escribirCSV(List<Alumno> alumnos){
+        String ruta = "output/datos.csv";
+
+        try(RandomAccessFile archivo = new RandomAccessFile(ruta, "rw")){
+            String columnas = "No Inscripcion,NoCuenta,Nombre,Apellido Paterno,Apellido Materno,Edad,Semestre,Promedio";
+            archivo.writeBytes(columnas + System.lineSeparator());
+            
+            for(int i = 0; i < alumnos.size(); i++){
+                String cadena = "";
+                cadena += alumnos.get(i).getNumeroInscripcion();
+                cadena += ",";
+                cadena += alumnos.get(i).getNumeroCuenta();
+                cadena += ",";
+                cadena += alumnos.get(i).getNombre();
+                cadena += ",";
+                cadena += alumnos.get(i).getApellidoP();
+                cadena += ",";
+                cadena += alumnos.get(i).getApellidoM();
+                cadena += ",";
+                cadena += alumnos.get(i).getEdad().toString();
+                cadena += ",";
+                cadena += alumnos.get(i).getSemestre().toString();
+                cadena += ",";
+                cadena += alumnos.get(i).getHistorial().promedio.toString();
+                archivo.writeBytes(cadena + System.lineSeparator());
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
 }
