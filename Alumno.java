@@ -96,6 +96,10 @@ public class Alumno {
         return this.numeroInscripcion;
     }
 
+    public void setNumeroInscripcion(String numeroInscripcion) {
+        this.numeroInscripcion = numeroInscripcion;
+    }
+
     public Integer getSemestre(){
         return this.semestre;
     }

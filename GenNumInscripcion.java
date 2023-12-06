@@ -1,3 +1,7 @@
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 public class GenNumInscripcion {
     public String generarIndicador(Double promedio){
 
@@ -15,6 +19,11 @@ public class GenNumInscripcion {
         indicadorEscolar = indicador.toString();
         // System.out.println("Indicador escolar: "+indicador);
         return indicadorEscolar;
+    }
+
+    public static void ordenarPorNumInscripcion(List<Alumno> alumnos){
+        Comparator<Alumno> comparadorPorIndicador = Comparator.comparing(Alumno::getNumeroInscripcion).reversed();
+        Collections.sort(alumnos, comparadorPorIndicador);
     }
 
     

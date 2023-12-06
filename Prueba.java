@@ -12,21 +12,6 @@ public class Prueba {
     public static void main(String[] args){
         List<Alumno> alumnos = new ArrayList<Alumno>();
         mostrarMenu(alumnos);
-        // for (int i = 0; i < 10; i++) {
-            
-        //     Alumno alumno = GenNombres.generarAlumno();
-        //     // System.out.print(' '+alumno.getNombre()+' ');
-        //     // System.out.print(alumno.getApellidoP()+' ');
-        //     // System.out.print(alumno.getApellidoM()+' ');
-        //     // System.out.print(alumno.getSemestre().toString()+' ');
-        //     // System.out.print(alumno.getNumeroCuenta()+' ');
-        //     // System.out.println(alumno.getEdad());
-        //     // System.out.println(alumno.getHistorial());
-        //     // System.out.println();
-
-        //     System.out.println(alumno);
-        // }
-        // System.out.println("Terminado");
 
     } 
 
@@ -43,8 +28,9 @@ public class Prueba {
             System.out.println("1. Generar registro de alumnos aleatorios");
             System.out.println("2. Dar de baja alumno");
             System.out.println("3. Buscar Alumno");
-            System.out.println("4. Generar numeros de inscripcion");
-            System.out.println("5. Exportar a CSV");
+            System.out.println("4. Imprimir lista alumnos");
+            System.out.println("5. Generar numeros de inscripcion");
+            System.out.println("6. Exportar a CSV");
             System.out.println("-----------------------------------------");
             System.out.println("0. Salir del programa");
             System.out.println("-----------------------------------------");
@@ -100,7 +86,28 @@ public class Prueba {
                     }
                     pausaPantalla();
                     break;
+
+                case 4:
+                    limpiaPantalla();
+                    System.out.println("Imprimiendo alumnos...");
+                    for(int i = 0; i < alumnos.size(); i++){
+                        System.out.println(alumnos.get(i));
+                    }
+                    pausaPantalla();
+                    break;
                     
+                case 5:
+                    limpiaPantalla();
+                    System.out.println("Ordenando por numero de inscripcion...");
+                    GenNumInscripcion.ordenarPorNumInscripcion(alumnos);
+                    for(int i = 0; i < alumnos.size(); i++){
+                        alumnos.get(i).setNumeroInscripcion(String.format("%04d", i+1));
+                    }
+                    for(int i = 0; i < alumnos.size(); i++){
+                        System.out.println(alumnos.get(i));
+                    }
+                    pausaPantalla();
+                    break;
             }
         }while(opcionMenu != 0);
 
