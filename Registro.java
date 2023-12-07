@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Registro {
     public static void main(String[] args) {
-        List<Alumno> alumnos = new ArrayList<Alumno>();
+        List<Alumno> alumnos = new ArrayList<Alumno>(); // Guarda todos los alumnos
         int opcionMenu;
         int opcionSubmenus;
         int opcionSubmenus2;
@@ -14,10 +14,11 @@ public class Registro {
         Scanner scanner = new Scanner(System.in);
         limpiaPantalla();
         System.out.println("Generando alumnos. Espere un momento...");
-        for(int i = 1; i <= 10; i++){
+        System.out.println("Ordenando por numero de inscripcion...");
+        System.out.println("Escribiendo a CSV...");
+        for(int i = 1; i <= 1000; i++){
             alumnos.add(GenNombres.generarAlumno(i));
         }
-        System.out.println("Ordenando por numero de inscripcion...");
         ordenarPorNumInscripcion(alumnos);
         escribirCSV(alumnos); // Desde que inicia el programa, guarda el CSV
         do{
