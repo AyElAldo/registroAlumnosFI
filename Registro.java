@@ -16,7 +16,7 @@ public class Registro {
         System.out.println("Generando alumnos. Espere un momento...");
         System.out.println("Ordenando por numero de inscripcion...");
         System.out.println("Escribiendo a CSV...");
-        for(int i = 1; i <= 10; i++){
+        for(int i = 1; i <= 1000; i++){
             alumnos.add(GenNombres.generarAlumno(i));
         }
         ordenarPorNumInscripcion(alumnos);
