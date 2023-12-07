@@ -71,7 +71,7 @@ public class Alumno {
      */
     public void setEdad(int edad) {
         this.edad = edad;
-        this.semestre = calcularSemestre();
+        // this.semestre = calcularSemestre();
         // System.out.println("Edad: "+ this.edad+ " Semestre: " + this.semestre);
     }
 
@@ -104,6 +104,10 @@ public class Alumno {
 
     public Integer getSemestre(){
         return this.semestre;
+    }
+
+    public void setSemestre() {
+        this.semestre = this.calcularSemestre();
     }
 
     public String getNumeroCuenta() {

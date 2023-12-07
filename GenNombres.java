@@ -83,6 +83,7 @@ public class GenNombres {
 
         /* Se asigna edad */
         alumno.setEdad(generadorEdad());
+        alumno.setSemestre();
         
         return alumno;
         

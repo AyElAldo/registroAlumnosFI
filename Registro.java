@@ -110,6 +110,7 @@ public class Registro {
                                     nuevo_nombre = scanner.nextLine();
                                     alumnos.get(indice_editar).setNombre(nuevo_nombre); // Se asigna nuevo nombre
                                 }else if(opcionEditar == 2){
+                                    /** Editar edad */
                                     Integer nueva_edad;
                                     System.out.print("Escribe la nueva edad: ");
                                     nueva_edad = scanner.nextInt();
