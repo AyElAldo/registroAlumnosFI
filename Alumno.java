@@ -79,6 +79,10 @@ public class Alumno {
         return this.direccion;
     }
 
+    public void setDireccionManual(String direccion){
+        this.direccion = direccion;
+    }
+
     public void setDireccion(Integer id) {
         String nombreArchivo = "src/direcciones.txt"; // Ruta
 

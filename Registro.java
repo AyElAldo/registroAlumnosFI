@@ -19,6 +19,7 @@ public class Registro {
         }
         System.out.println("Ordenando por numero de inscripcion...");
         ordenarPorNumInscripcion(alumnos);
+        escribirCSV(alumnos); // Desde que inicia el programa, guarda el CSV
         do{
             
             limpiaPantalla();
@@ -43,7 +44,7 @@ public class Registro {
                         System.out.println("1. Alumno");
                         System.out.println("2. Regresar");
                         System.out.println("-----------------------------------------");
-                        System.out.println("Selecciona la opcion: ");
+                        System.out.print("Selecciona la opcion: ");
                         opcionSubmenus = scanner.nextInt();
                         if(opcionSubmenus == 1){
                             opcionSubmenus2 = 0;
@@ -114,13 +115,13 @@ public class Registro {
                                     Integer nueva_edad;
                                     System.out.print("Escribe la nueva edad: ");
                                     nueva_edad = scanner.nextInt();
-                                    alumnos.get(indice_editar).setEdad(nueva_edad); // Se asigna nuevo nombre
+                                    alumnos.get(indice_editar).setEdad(nueva_edad); // Se asigna nueva edad
                                 }else if(opcionEditar==3){
                                     String nueva_direccion;
                                     scanner.nextLine(); // Limpia Buffer
                                     System.out.print("Escribe la nueva direccion: ");
                                     nueva_direccion = scanner.nextLine();
-                                    alumnos.get(indice_editar).setNombre(nueva_direccion); // Se asigna nuevo nombre
+                                    alumnos.get(indice_editar).setDireccionManual(nueva_direccion);// Se asigna nueva direccion
                                 }else{
                                     System.out.println("Opcion no valida.");
                                 }
@@ -129,6 +130,7 @@ public class Registro {
                                 System.out.println("-----------------------------------------");
                                 System.out.println(alumnos.get(indice_editar));
                                 System.out.println("-----------------------------------------");
+                                pausaPantalla();
 
                             }else if(opcionSubmenus2 == 3){} // Regresa
                             else {
@@ -260,7 +262,7 @@ public class Registro {
 
         try(RandomAccessFile archivo = new RandomAccessFile(ruta, "rw")){
             archivo.setLength(0);
-            String columnas = "No Inscripcion,NoCuenta,Nombre,Apellido Paterno,Apellido Materno,Edad,Semestre,Promedio";
+            String columnas = "No Inscripcion,NoCuenta,Nombre,Apellido Paterno,Apellido Materno,Edad,Semestre,Promedio,Direccion";
             archivo.writeBytes(columnas + System.lineSeparator());
             
             for(int i = 0; i < alumnos.size(); i++){
@@ -282,6 +284,8 @@ public class Registro {
                 DecimalFormat df = new DecimalFormat("#.##");
                 String resultado = df.format(alumnos.get(i).getHistorial().promedio);
                 cadena += resultado.toString();
+                cadena += ",";
+                cadena += alumnos.get(i).getDireccion();
                 archivo.writeBytes(cadena + System.lineSeparator());
             }
             archivo.close();
