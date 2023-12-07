@@ -1,8 +1,5 @@
 // package main;
 
-// import java.util.Random;
-// import java.io.FileReader;
-
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;

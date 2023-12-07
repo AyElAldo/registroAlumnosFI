@@ -33,7 +33,9 @@ public class Alumno {
         // this.numeroCuenta = generarNumeroDeCuenta();
     }
     /** Constructor vacio */ 
-    public Alumno(Integer id){};
+    public Alumno(Integer id){
+        this.setDireccion(id);
+    };
 
     /* Getters and Setters */
     public String getNombre() {
@@ -83,7 +85,7 @@ public class Alumno {
         try(RandomAccessFile archivo = new RandomAccessFile(nombreArchivo, "rw")){
             // archivo.seek(0);
             for(int i = 1; i < id; i++){
-                System.out.println(archivo.readLine());
+                archivo.readLine();
             }
             this.direccion = archivo.readLine();
 
