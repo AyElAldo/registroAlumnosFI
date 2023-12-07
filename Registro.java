@@ -12,20 +12,20 @@ public class Registro {
         int opcionSubmenus2;
 
         Scanner scanner = new Scanner(System.in);
-
+        limpiaPantalla();
+        System.out.println("Generando alumnos. Espere un momento...");
+        for(int i = 1; i <= 10; i++){
+            alumnos.add(GenNombres.generarAlumno(i));
+        }
+        System.out.println("Ordenando por numero de inscripcion...");
+        ordenarPorNumInscripcion(alumnos);
         do{
-
             
             limpiaPantalla();
             System.out.println("-----------------------------------------");
             System.out.println("|\tBIENVENIDO A LA BASE DE DATOS\t|");
             System.out.println("-----------------------------------------");
-            System.out.println("Generando alumnos. Espere un momento...");
-            for(int i = 1; i <= 10; i++){
-                alumnos.add(GenNombres.generarAlumno(i));
-            }
-            System.out.println("Ordenando por numero de inscripcion...");
-            ordenarPorNumInscripcion(alumnos);
+            
 
             System.out.println("1. Edicion de datos");
             System.out.println("2. Guardar datos");
@@ -111,7 +111,6 @@ public class Registro {
                                     alumnos.get(indice_editar).setNombre(nuevo_nombre); // Se asigna nuevo nombre
                                 }else if(opcionEditar == 2){
                                     Integer nueva_edad;
-                                    scanner.nextInt(); // Limpia Buffer
                                     System.out.print("Escribe la nueva edad: ");
                                     nueva_edad = scanner.nextInt();
                                     alumnos.get(indice_editar).setEdad(nueva_edad); // Se asigna nuevo nombre
