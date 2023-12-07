@@ -21,16 +21,28 @@ public class GenNumInscripcion {
         return indicadorEscolar;
     }
 
+    /**
+     * Se aplica la primera vez que ordena los numero de inscripcion
+     * @param alumnos Lista de alumnos a ordenar
+     */
     public static void ordenarPorNumInscripcion(List<Alumno> alumnos){
         Comparator<Alumno> comparadorPorIndicador = Comparator.comparing(Alumno::getNumeroInscripcion).reversed();
         Collections.sort(alumnos, comparadorPorIndicador);
     }
     
+    /**
+     * Se aplica cuando ya han sido ordenados los numeros de inscripcion al menos una vez
+     * @param alumnos Lista de alumnos a ordenar
+     */
     public static void ordenarPorNumInscripcion2(List<Alumno> alumnos){
         Comparator<Alumno> comparadorPorIndicador = Comparator.comparing(Alumno::getNumeroInscripcion);
         Collections.sort(alumnos, comparadorPorIndicador);
     }
     
+    public static void ordenarPorPromedio(List<Alumno> alumnos){
+        Comparator<Alumno> comparadorPorPromedio = Comparator.comparing(Alumno::getPromedio);
+        Collections.sort(alumnos, comparadorPorPromedio);
+    }
 
     
     

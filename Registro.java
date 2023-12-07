@@ -16,7 +16,7 @@ public class Registro {
         System.out.println("Generando alumnos. Espere un momento...");
         System.out.println("Ordenando por numero de inscripcion...");
         System.out.println("Escribiendo a CSV...");
-        for(int i = 1; i <= 1000; i++){
+        for(int i = 1; i <= 10; i++){
             alumnos.add(GenNombres.generarAlumno(i));
         }
         ordenarPorNumInscripcion(alumnos);
@@ -151,7 +151,8 @@ public class Registro {
                         System.out.println("-----------------------------------------");
                         System.out.println("1. Guardar datos");
                         System.out.println("2. Eliminar datos (elimina a un alumno)");
-                        System.out.println("3. Regresar");
+                        System.out.println("3. Agregar alumno");
+                        System.out.println("4. Regresar");
                         System.out.println("-----------------------------------------");
                         System.out.print("Selecciona la opcion: ");
                         opcionSubmenus = scanner.nextInt();
@@ -181,11 +182,44 @@ public class Registro {
                                 System.out.println("Alumno eliminado. Recuerda guardas tus cambios.");
                             }
                             pausaPantalla();
-                        }else if(opcionSubmenus == 3){} // Regresa
+                        }else if(opcionSubmenus == 3){
+                            /** Se agrega alumno */
+                            String nombreNuevo;
+                            String apellidoPNuevo;
+                            String apellidoMNuevo;
+                            Integer edadNueva;
+                            Alumno alumnoNuevo;
+                            limpiaPantalla();
+                            scanner.nextLine();
+                            System.out.print("Escribe el nombre del alumno: ");
+                            nombreNuevo = scanner.nextLine();
+                            System.out.print("Escribe el apellido paterno del alumno: ");
+                            apellidoPNuevo = scanner.nextLine();
+                            System.out.print("Escribe el apellido materno del alumno: ");
+                            apellidoMNuevo = scanner.nextLine();
+                            System.out.print("Escribe la edad del alumno: ");
+                            edadNueva = scanner.nextInt();
+                            scanner.nextLine(); // Limpia buffer
+
+                            alumnoNuevo = new Alumno(alumnos.size(), nombreNuevo, apellidoPNuevo, apellidoMNuevo, edadNueva);
+                            alumnoNuevo.setSemestre();
+                            alumnoNuevo.setNumeroInscripcion(alumnoNuevo.getHistorial().promedio.toString());
+                            alumnos.add(alumnoNuevo);
+                            ordenarPorPromedio(alumnos);
+                            
+                            System.out.println("Se ha creado el alumno correctamente.");
+                            System.out.println("Imprimiendo datos del alumno...");
+                            pausaPantalla();
+                            System.out.println(alumnoNuevo);
+                            scanner.nextLine();
+                            pausaPantalla();
+                            
+                        }
+                        else if(opcionSubmenus == 4){} // Regresa
                         else {
                             System.out.println("Opcion invalida.");
                         }
-                    }while(opcionSubmenus != 3);
+                    }while(opcionSubmenus != 4);
                     break;
                 case 3:
                         
@@ -250,6 +284,13 @@ public class Registro {
     
     public static void ordenarPorNumInscripcion2(List<Alumno> alumnos){
         GenNumInscripcion.ordenarPorNumInscripcion2(alumnos);
+        for(int i = 0; i < alumnos.size(); i++){
+            alumnos.get(i).setNumeroInscripcion(String.format("%04d", i+1));
+        }
+    }
+    
+    public static void ordenarPorPromedio(List<Alumno> alumnos){
+        GenNumInscripcion.ordenarPorPromedio(alumnos);
         for(int i = 0; i < alumnos.size(); i++){
             alumnos.get(i).setNumeroInscripcion(String.format("%04d", i+1));
         }

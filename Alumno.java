@@ -14,6 +14,7 @@ public class Alumno {
     private String numeroCuenta;
     private String numeroInscripcion;
     private RegistroAcadem historial;
+    private Double promedio;
 
     
     /**
@@ -24,7 +25,7 @@ public class Alumno {
      * @param edad Edad del alumno
      * @param direccion Direccion del alumno
      */
-    public Alumno(Integer id,String nombre, String apellidoP, String apellidoM, Integer edad, String direccion){
+    public Alumno(Integer id,String nombre, String apellidoP, String apellidoM, Integer edad){
         this.nombre = nombre;
         this.apellidoP = apellidoP;
         this.apellidoM = apellidoM;
@@ -126,6 +127,13 @@ public class Alumno {
         return this.historial;
     }
 
+    public Double getPromedio() {
+        return promedio;
+    }
+    public void setPromedio() {
+        this.promedio = this.historial.promedio;
+    }
+
     /**
      * Metodo para calcular el semestre a partir de la edad.
      * Ademas se crea el registro de cada alumno a partir del semestre.
@@ -152,7 +160,8 @@ public class Alumno {
         this.historial = new RegistroAcadem(semestre);
         // Asigna el numero de cuenta generado
         this.numeroCuenta = generarNumeroDeCuenta();
-
+        // Asigna el promedio a la clase Alumno, ademas del historial
+        setPromedio();
         GenNumInscripcion generadorIndicador = new GenNumInscripcion();
         this.numeroInscripcion = generadorIndicador.generarIndicador(this.historial.promedio);
         // System.out.println("Numero de inscripcion es: "+this.numeroInscripcion);
