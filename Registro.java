@@ -56,7 +56,7 @@ public class Registro {
                             System.out.print("Selecciona la opcion: ");
                             opcionSubmenus2 = scanner.nextInt();
 
-                            if(opcionSubmenus == 1){
+                            if(opcionSubmenus2 == 1){
                                 /** Buscar alumno */
                                 String numeroCuentaBuscar;
                                 int encontrado = 0;
@@ -73,7 +73,7 @@ public class Registro {
                                 }
                                 if(encontrado == 0) System.out.println("No se ha encontrado.");
                                 pausaPantalla();
-                            }else if(opcionSubmenus == 2){
+                            }else if(opcionSubmenus2 == 2){
                                 /** Editar datos del alumno */
                                 String numeroCuentaEditar;
                                 int indice_editar = 0;
@@ -105,9 +105,24 @@ public class Registro {
                                 if(opcionEditar == 1){
                                     /** Editar nombre */
                                     String nuevo_nombre;
+                                    scanner.nextLine(); // Limpia Buffer
                                     System.out.print("Escribe el nuevo nombre: ");
                                     nuevo_nombre = scanner.nextLine();
                                     alumnos.get(indice_editar).setNombre(nuevo_nombre); // Se asigna nuevo nombre
+                                }else if(opcionEditar == 2){
+                                    Integer nueva_edad;
+                                    scanner.nextInt(); // Limpia Buffer
+                                    System.out.print("Escribe la nueva edad: ");
+                                    nueva_edad = scanner.nextInt();
+                                    alumnos.get(indice_editar).setEdad(nueva_edad); // Se asigna nuevo nombre
+                                }else if(opcionEditar==3){
+                                    String nueva_direccion;
+                                    scanner.nextLine(); // Limpia Buffer
+                                    System.out.print("Escribe la nueva direccion: ");
+                                    nueva_direccion = scanner.nextLine();
+                                    alumnos.get(indice_editar).setNombre(nueva_direccion); // Se asigna nuevo nombre
+                                }else{
+                                    System.out.println("Opcion no valida.");
                                 }
                                 limpiaPantalla();
                                 System.out.println("\t\tNuevos Datos");
@@ -115,7 +130,7 @@ public class Registro {
                                 System.out.println(alumnos.get(indice_editar));
                                 System.out.println("-----------------------------------------");
 
-                            }else if(opcionSubmenus == 3){} // Regresa
+                            }else if(opcionSubmenus2 == 3){} // Regresa
                             else {
                                 System.out.println("Opcion invalida.");
                             }
@@ -131,26 +146,18 @@ public class Registro {
                         opcionSubmenus = 0;
                         limpiaPantalla();
                         System.out.println("-----------------------------------------");
-                        System.out.println("1. Ver datos");
-                        System.out.println("2. Guardar datos");
-                        System.out.println("3. Eliminar datos (elimina a un alumno)");
-                        System.out.println("4. Regresar");
+                        System.out.println("1. Guardar datos");
+                        System.out.println("2. Eliminar datos (elimina a un alumno)");
+                        System.out.println("3. Regresar");
                         System.out.println("-----------------------------------------");
                         System.out.print("Selecciona la opcion: ");
                         opcionSubmenus = scanner.nextInt();
                         if(opcionSubmenus == 1){
-                            /** Ver datos */
-                            for(int i = 0; i < alumnos.size(); i++){
-                                System.out.println(alumnos.get(i));       
-                            }
-                            pausaPantalla();
-
-                        }else if(opcionSubmenus == 2){
                             /** Guardar datos en CSV */
                             escribirCSV(alumnos);
                             System.out.println("Se ha exportado correctamente al CSV");
 
-                        }else if(opcionSubmenus == 3){
+                        }else if(opcionSubmenus == 2){
                             /* Elimina a un alumno */
                             String numeroCuentaEliminar;
                             int eliminado = 0;
@@ -167,15 +174,15 @@ public class Registro {
                             if(eliminado != 1){
                                 System.out.println("No se ha encontrado el alumno.");
                             }else{
-                                ordenarPorNumInscripcion(alumnos);
+                                ordenarPorNumInscripcion2(alumnos);
                                 System.out.println("Alumno eliminado. Recuerda guardas tus cambios.");
                             }
                             pausaPantalla();
-                        }else if(opcionSubmenus == 4){} // Regresa
+                        }else if(opcionSubmenus == 3){} // Regresa
                         else {
                             System.out.println("Opcion invalida.");
                         }
-                    }while(opcionSubmenus != 4);
+                    }while(opcionSubmenus != 3);
                     break;
                 case 3:
                         
@@ -237,6 +244,13 @@ public class Registro {
             alumnos.get(i).setNumeroInscripcion(String.format("%04d", i+1));
         }
     }
+    
+    public static void ordenarPorNumInscripcion2(List<Alumno> alumnos){
+        GenNumInscripcion.ordenarPorNumInscripcion2(alumnos);
+        for(int i = 0; i < alumnos.size(); i++){
+            alumnos.get(i).setNumeroInscripcion(String.format("%04d", i+1));
+        }
+    }
 
     /** Exporta los datos a CSV
      * @param alumnos Lista de alumnos
@@ -270,6 +284,7 @@ public class Registro {
                 cadena += resultado.toString();
                 archivo.writeBytes(cadena + System.lineSeparator());
             }
+            archivo.close();
         }catch(Exception e){
             e.printStackTrace();
         }

@@ -25,6 +25,12 @@ public class GenNumInscripcion {
         Comparator<Alumno> comparadorPorIndicador = Comparator.comparing(Alumno::getNumeroInscripcion).reversed();
         Collections.sort(alumnos, comparadorPorIndicador);
     }
+    
+    public static void ordenarPorNumInscripcion2(List<Alumno> alumnos){
+        Comparator<Alumno> comparadorPorIndicador = Comparator.comparing(Alumno::getNumeroInscripcion);
+        Collections.sort(alumnos, comparadorPorIndicador);
+    }
+    
 
     
     
