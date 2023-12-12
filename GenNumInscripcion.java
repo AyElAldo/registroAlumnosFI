@@ -2,6 +2,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Contiene los metodos necesarios para el calculo del indicador y numero de inscripcion de cada alumno.
+ */
 public class GenNumInscripcion {
     public String generarIndicador(Double promedio){
 
@@ -39,6 +42,10 @@ public class GenNumInscripcion {
         Collections.sort(alumnos, comparadorPorIndicador);
     }
     
+    /**
+     * Ordena la lista de alumnos de acuerdo a su promedio.
+     * @param alumnos Lista de alumnos
+     */
     public static void ordenarPorPromedio(List<Alumno> alumnos){
         Comparator<Alumno> comparadorPorPromedio = Comparator.comparing(Alumno::getPromedio);
         Collections.sort(alumnos, comparadorPorPromedio);

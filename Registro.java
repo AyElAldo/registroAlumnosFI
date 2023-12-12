@@ -1,9 +1,27 @@
+/**
+ * Genera 1000 alumnos con datos aleatorios (nombre, apellidos, direccion, etc). De acuerdo a esos datos
+ * se calculan las materias y sus calificaciones para el calculo de su promedio. El promedio nos ayuda 
+ * a calcular el numero de inscricpion correspondiente a cada alumno de acuerdo a la lista de alumnos.
+ * 
+ * Dentro del menu, se pueden modificar los datos de los alumnos, agregar o dar de baja.
+ * 
+ * Se hacen uso de archivos CSV para la entrada de datos y creacion de atributos aleatorios.
+ * Como salida se genera un CSV con los datos de los alumnos en la lista de alumnos.
+ * 
+ * @author AyElAldo
+ * @version 1.0
+ * @since 2023-01-12
+ */
 import java.io.RandomAccessFile;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Contiene el cuerpo principal del programa. Interactua con todas las clases y/o metodos necesarios para el
+ * correcto funcionamiento del programa.
+ */
 public class Registro {
     public static void main(String[] args) {
         List<Alumno> alumnos = new ArrayList<Alumno>(); // Guarda todos los alumnos

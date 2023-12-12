@@ -1,8 +1,12 @@
 //package main;
 import java.io.RandomAccessFile; // 
 import java.util.Random; // Numeros aleatorios
-
 import java.io.IOException; // Excepciones
+
+/**
+ * Clase que se encarga de generar alumnos con datos aleatorios. (Se llenan aleatoriamente casi todos los atributos del alumno).
+ * Ademas, se llaman funciones y metodos para el calculo de semestre, calificaciones, promedio, etc.
+ */
 public class GenNombres {
     
     public static Integer generadorEdad(){

@@ -3,6 +3,10 @@
 import java.io.RandomAccessFile;
 import java.util.Random;
 
+/**
+ * Alumno que almacena los datos necesarios para el despliegue de informacion necesaria.
+ * Contiene un numero de inscripcion de acuerdo con mas alumnos almacenados.
+ */
 public class Alumno {
     /* Atributos */
     private String nombre;
@@ -179,6 +183,11 @@ public class Alumno {
         return cadena;
     }
 
+    /**
+     * Se formatea la cadena con los datos importantes de cada alumno
+     * 
+     * @return Cadena que representa al alumno
+     */
     @Override
     public String toString() {
         String cadena = "------------------------------\n";

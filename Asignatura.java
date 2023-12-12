@@ -1,3 +1,7 @@
+/**
+ * Representa una asignatura que puede ser tomada por un alumno. 
+ * Se consiseran los datos escenciales para la implementacion de despliegue de informacion.
+ */
 public class Asignatura{
     
     private String nombre; // Nombre de la asignatura
